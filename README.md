@@ -1,6 +1,6 @@
 # ⛳ GolfGives — Golf Charity Subscription Platform
 
-> **Live Demo:** [golf-charity-platform-peach-five.vercel.app](https://golf-charity-platform-peach-five.vercel.app)
+> **Live Demo:** [https://golf-charity-platform-vedant.vercel.app/](https://golf-charity-platform-vedant.vercel.app/)
 
 A full-stack subscription platform where golfers track their Stableford scores, enter monthly prize draws, and automatically support the charities that matter to them.
 
@@ -67,8 +67,8 @@ npm install
 1. Go to [stripe.com](https://stripe.com) and create an account
 2. Go to **Developers → API Keys** and copy your keys
 3. Create two products in **Products → Add Product**:
-   - `GolfGives Monthly` →  ₹19.99/month
-   - `GolfGives Yearly` →  ₹199.99/year
+   - `GolfGives Monthly` →  ₹270/month
+   - `GolfGives Yearly` →  ₹3000/year
 4. Copy both Price IDs
 
 ### 4. Configure Environment Variables
@@ -108,7 +108,7 @@ Copy the webhook signing secret into `STRIPE_WEBHOOK_SECRET`
 ## 🌍 Deployment
 
 The app is live at:
-**[https://golf-charity-platform-peach-five.vercel.app](https://golf-charity-platform-peach-five.vercel.app)**
+**[https://golf-charity-platform-vedant.vercel.app/](https://golf-charity-platform-vedant.vercel.app/)**
 
 To deploy your own:
 1. Push code to GitHub
