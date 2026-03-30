@@ -73,9 +73,8 @@ export default function AdminWinnersPage() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium capitalize transition-all flex items-center gap-2 ${
-                filter === f ? 'bg-brand-500/10 text-brand-400 border border-brand-500/20' : 'glass text-white/50 hover:text-white'
-              }`}
+              className={`px-4 py-2 rounded-xl text-sm font-medium capitalize transition-all flex items-center gap-2 ${filter === f ? 'bg-brand-500/10 text-brand-400 border border-brand-500/20' : 'glass text-white/50 hover:text-white'
+                }`}
             >
               {f}
               <span className={`text-xs px-1.5 py-0.5 rounded-full ${filter === f ? 'bg-brand-500/20' : 'bg-white/10'}`}>
@@ -120,7 +119,7 @@ export default function AdminWinnersPage() {
                       {w.match_type}-Match
                     </span>
                   </td>
-                  <td className="text-brand-400 font-bold">£{(w.prize_amount / 100).toFixed(2)}</td>
+                  <td className="text-brand-400 font-bold"> ₹{(w.prize_amount / 100).toFixed(2)}</td>
                   <td>
                     {w.proof_url ? (
                       <a href={w.proof_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-brand-400 hover:text-brand-300 text-sm transition-colors">
@@ -133,7 +132,7 @@ export default function AdminWinnersPage() {
                   <td>
                     <span className={
                       w.verification_status === 'approved' ? 'status-active' :
-                      w.verification_status === 'rejected' ? 'status-inactive' : 'status-pending'
+                        w.verification_status === 'rejected' ? 'status-inactive' : 'status-pending'
                     }>{w.verification_status}</span>
                   </td>
                   <td>

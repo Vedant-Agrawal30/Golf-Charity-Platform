@@ -4,15 +4,15 @@ import { useState, useEffect } from 'react'
 import { Heart, Trophy, TrendingUp, ArrowRight, Star, CheckCircle, ChevronDown } from 'lucide-react'
 
 const CHARITIES = [
-  { name: "Cancer Research UK", raised: "£2.4M", color: "#22c55e" },
-  { name: "British Heart Foundation", raised: "£1.8M", color: "#16a34a" },
-  { name: "Alzheimer's Society", raised: "£1.2M", color: "#15803d" },
+  { name: "Cancer Research UK", raised: " ₹2.4M", color: "#22c55e" },
+  { name: "British Heart Foundation", raised: " ₹1.8M", color: "#16a34a" },
+  { name: "Alzheimer's Society", raised: " ₹1.2M", color: "#15803d" },
 ]
 
 const STATS = [
-  { value: "£847,200", label: "Raised for charity", icon: Heart },
+  { value: " ₹847,200", label: "Raised for charity", icon: Heart },
   { value: "12,400+", label: "Active members", icon: Star },
-  { value: "£234,000", label: "Prizes paid out", icon: Trophy },
+  { value: " ₹234,000", label: "Prizes paid out", icon: Trophy },
 ]
 
 export default function HomePage() {
@@ -77,7 +77,7 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 text-sm">
             <span className="w-2 h-2 bg-brand-500 rounded-full animate-pulse" />
             <span className="text-white/60">Live:</span>
-            <span className="text-brand-400 font-semibold">£{count.toLocaleString()} raised this year</span>
+            <span className="text-brand-400 font-semibold"> ₹{count.toLocaleString()} raised this year</span>
           </div>
 
           <h1 className="font-display text-6xl md:text-8xl font-bold leading-tight mb-6">
@@ -243,7 +243,7 @@ export default function HomePage() {
           <h2 className="font-display text-5xl font-bold text-white mb-4">Ready to play with purpose?</h2>
           <p className="text-white/50 text-lg mb-8">Join thousands of golfers making every round count.</p>
           <Link href="/subscribe" className="btn-primary text-lg py-4 px-10 inline-flex items-center gap-2">
-            Subscribe Now — From £19.99/month
+            Subscribe Now — From  ₹270/month
             <ArrowRight className="w-5 h-5" />
           </Link>
           <div className="mt-6 text-sm text-white/30">Cancel any time. No lock-in.</div>

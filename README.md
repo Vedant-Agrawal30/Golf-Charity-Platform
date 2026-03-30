@@ -22,7 +22,7 @@ A full-stack subscription platform where golfers track their Stableford scores, 
 ### 👤 User
 - Sign up / Login with email
 - Choose a charity & set donation % at signup
-- Subscribe Monthly (£19.99) or Yearly (£199.99) via Stripe
+- Subscribe Monthly ( ₹19.99) or Yearly ( ₹199.99) via Stripe
 - Enter Stableford scores (1–45, rolling last 5 logic)
 - View published prize draws & winning numbers
 - Track winnings history & payment status
@@ -67,8 +67,8 @@ npm install
 1. Go to [stripe.com](https://stripe.com) and create an account
 2. Go to **Developers → API Keys** and copy your keys
 3. Create two products in **Products → Add Product**:
-   - `GolfGives Monthly` → £19.99/month
-   - `GolfGives Yearly` → £199.99/year
+   - `GolfGives Monthly` →  ₹19.99/month
+   - `GolfGives Yearly` →  ₹199.99/year
 4. Copy both Price IDs
 
 ### 4. Configure Environment Variables

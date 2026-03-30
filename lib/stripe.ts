@@ -7,15 +7,15 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export const PLANS = {
   monthly: {
     name: 'Monthly',
-    price: 27000, // £19.99 in pence
+    price: 27000, //  ₹19 in pence
     interval: 'month' as const,
     priceId: process.env.STRIPE_MONTHLY_PRICE_ID!,
     charity_min_percent: 10,
-    pool_contribution: 500, // £5 per subscriber goes to pool
+    pool_contribution: 500, //  ₹5 per subscriber goes to pool
   },
   yearly: {
     name: 'Yearly',
-    price: 300000, // £199.99 in pence (discounted)
+    price: 300000, //  ₹199.99 in pence (discounted)
     interval: 'year' as const,
     priceId: process.env.STRIPE_YEARLY_PRICE_ID!,
     charity_min_percent: 10,

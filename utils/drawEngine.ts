@@ -57,7 +57,7 @@ export function checkMatch(userScores: number[], winningNumbers: number[]): 0 | 
 export function calculatePrizePools(
   activeSubscriberCount: number,
   jackpotRollover: number = 0,
-  monthlyContributionPerUser: number = 500 // £5 in pence
+  monthlyContributionPerUser: number = 500 //  ₹5 in pence
 ) {
   const totalPool = activeSubscriberCount * monthlyContributionPerUser + jackpotRollover
   return {
@@ -69,5 +69,5 @@ export function calculatePrizePools(
 }
 
 export function formatCurrency(pence: number): string {
-  return `£${(pence / 100).toFixed(2)}`
+  return ` ₹${(pence / 100).toFixed(2)}`
 }

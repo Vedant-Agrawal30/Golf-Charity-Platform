@@ -53,7 +53,7 @@ export default function AdminDashboard() {
           {[
             { label: 'Total Users', value: stats.totalUsers, icon: Users, color: 'text-white' },
             { label: 'Active Subscribers', value: stats.activeSubscribers, icon: TrendingUp, color: 'text-brand-400' },
-            { label: 'Prizes Paid Out', value: `£${(stats.totalPaid / 100).toFixed(2)}`, icon: Trophy, color: 'text-brand-400' },
+            { label: 'Prizes Paid Out', value: ` ₹${(stats.totalPaid / 100).toFixed(2)}`, icon: Trophy, color: 'text-brand-400' },
             { label: 'Active Charities', value: stats.activeCharities, icon: CharityIcon, color: 'text-pink-400' },
           ].map((s, i) => (
             <div key={i} className="stat-card">

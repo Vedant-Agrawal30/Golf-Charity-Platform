@@ -106,9 +106,8 @@ export default function DashboardPage() {
             <button
               key={item.key}
               onClick={() => setActiveTab(item.key as any)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                activeTab === item.key ? 'bg-brand-500/10 text-brand-400 border border-brand-500/20' : 'text-white/50 hover:text-white hover:bg-white/5'
-              }`}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${activeTab === item.key ? 'bg-brand-500/10 text-brand-400 border border-brand-500/20' : 'text-white/50 hover:text-white hover:bg-white/5'
+                }`}
             >
               <item.icon className="w-4 h-4" />
               {item.label}
@@ -141,7 +140,7 @@ export default function DashboardPage() {
           {[
             { label: 'Subscription', value: subscription?.plan ? subscription.plan.charAt(0).toUpperCase() + subscription.plan.slice(1) : 'None', sub: isActive ? '● Active' : '○ Inactive', color: isActive ? 'text-brand-400' : 'text-red-400' },
             { label: 'Scores Entered', value: scores.length + '/5', sub: 'Rolling last 5', color: 'text-white' },
-            { label: 'Total Winnings', value: `£${(totalWon / 100).toFixed(2)}`, sub: `${wins.length} prizes`, color: 'text-brand-400' },
+            { label: 'Total Winnings', value: ` ₹${(totalWon / 100).toFixed(2)}`, sub: `${wins.length} prizes`, color: 'text-brand-400' },
             { label: 'Charity', value: subscription?.charity_percentage + '%' || '10%', sub: subscription?.charity?.name?.split(' ')[0] || '–', color: 'text-white' },
           ].map((stat, i) => (
             <div key={i} className="stat-card">
@@ -239,15 +238,15 @@ export default function DashboardPage() {
                     </div>
                     <div className="mt-3 grid grid-cols-3 gap-3 text-sm text-center">
                       <div className="bg-white/3 rounded-lg p-2">
-                        <div className="text-brand-400 font-bold">£{(draw.five_match_pool / 100).toFixed(2)}</div>
+                        <div className="text-brand-400 font-bold"> ₹{(draw.five_match_pool / 100).toFixed(2)}</div>
                         <div className="text-white/30 text-xs">Jackpot</div>
                       </div>
                       <div className="bg-white/3 rounded-lg p-2">
-                        <div className="text-blue-400 font-bold">£{(draw.four_match_pool / 100).toFixed(2)}</div>
+                        <div className="text-blue-400 font-bold"> ₹{(draw.four_match_pool / 100).toFixed(2)}</div>
                         <div className="text-white/30 text-xs">4-Match</div>
                       </div>
                       <div className="bg-white/3 rounded-lg p-2">
-                        <div className="text-purple-400 font-bold">£{(draw.three_match_pool / 100).toFixed(2)}</div>
+                        <div className="text-purple-400 font-bold"> ₹{(draw.three_match_pool / 100).toFixed(2)}</div>
                         <div className="text-white/30 text-xs">3-Match</div>
                       </div>
                     </div>
@@ -278,7 +277,7 @@ export default function DashboardPage() {
                     <tr key={w.id}>
                       <td>{w.draw?.month}</td>
                       <td>{w.match_type}-Number Match</td>
-                      <td className="text-brand-400 font-bold">£{(w.prize_amount / 100).toFixed(2)}</td>
+                      <td className="text-brand-400 font-bold"> ₹{(w.prize_amount / 100).toFixed(2)}</td>
                       <td><span className={`status-${w.verification_status === 'approved' ? 'active' : w.verification_status === 'rejected' ? 'inactive' : 'pending'}`}>{w.verification_status}</span></td>
                       <td><span className={`status-${w.payment_status === 'paid' ? 'paid' : 'pending'}`}>{w.payment_status}</span></td>
                     </tr>
