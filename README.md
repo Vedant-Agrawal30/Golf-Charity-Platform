@@ -1,160 +1,3 @@
-<!-- # ⛳ GolfGives — Golf Charity Subscription Platform
-
-> **Live Demo:** [https://golf-charity-platform-vedant.vercel.app/](https://golf-charity-platform-vedant.vercel.app/)
-
-A full-stack subscription platform where golfers track their Stableford scores, enter monthly prize draws, and automatically support the charities that matter to them.
-
----
-
-## 🚀 Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | Next.js 14 (App Router), TypeScript, Tailwind CSS |
-| Backend | Supabase (PostgreSQL + Auth + Storage) |
-| Payments | Stripe (Subscriptions + Webhooks) |
-| Deployment | Vercel |
-
----
-
-## ✨ Features
-
-### 👤 User
-- Sign up / Login with email
-- Choose a charity & set donation % at signup
-- Subscribe Monthly ( ₹19.99) or Yearly ( ₹199.99) via Stripe
-- Enter Stableford scores (1–45, rolling last 5 logic)
-- View published prize draws & winning numbers
-- Track winnings history & payment status
-- Cancel subscription anytime
-- Adjust charity donation % from settings
-
-### 🛠️ Admin
-- Live dashboard with platform-wide stats
-- User management (view/edit scores, manage subscriptions)
-- Draw system (random + algorithmic simulation & publish)
-- Prize pool auto-calculation (40/35/25 split)
-- Jackpot rollover logic
-- Charity management (add/edit/delete/feature)
-- Winner verification (approve/reject/mark paid)
-
----
-
-## 🖥️ User Dashboard Preview
-
-After signing up and subscribing, users get access to their personal dashboard:
-
-- 📊 **Score Tracker** — Enter and view your last 5 Stableford scores
-- 🏆 **Prize Draw** — See your entry status for the current monthly draw
-- 💚 **Charity Impact** — Track how much your subscription has donated
-- 🔔 **Winnings** — Get notified when you win and track payment status
-
----
-
-## ⚙️ Local Setup
-
-### 1. Install Dependencies
-```bash
-npm install
-```
-
-### 2. Set Up Supabase
-1. Go to [supabase.com](https://supabase.com) and create a new project
-2. Go to **SQL Editor** → paste and run `supabase-schema.sql`
-3. Go to **Project Settings → API** and copy your keys
-
-### 3. Set Up Stripe
-1. Go to [stripe.com](https://stripe.com) and create an account
-2. Go to **Developers → API Keys** and copy your keys
-3. Create two products in **Products → Add Product**:
-   - `GolfGives Monthly` →  ₹270/month
-   - `GolfGives Yearly` →  ₹3000/year
-4. Copy both Price IDs
-
-### 4. Configure Environment Variables
-```bash
-cp .env.local.example .env.local
-```
-
-Fill in `.env.local`:
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-
-STRIPE_SECRET_KEY=sk_test_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_MONTHLY_PRICE_ID=price_...
-STRIPE_YEARLY_PRICE_ID=price_...
-STRIPE_WEBHOOK_SECRET=whsec_...
-
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
-### 5. Run Locally
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000)
-
-### 6. Set Up Stripe Webhook (Local)
-```bash
-stripe listen --forward-to localhost:3000/api/stripe/webhook
-```
-Copy the webhook signing secret into `STRIPE_WEBHOOK_SECRET`
-
----
-
-## 🌍 Deployment
-
-The app is live at:
-**[https://golf-charity-platform-vedant.vercel.app/](https://golf-charity-platform-vedant.vercel.app/)**
-
-To deploy your own:
-1. Push code to GitHub
-2. Import repo at [vercel.com](https://vercel.com)
-3. Add all environment variables
-4. Set `NEXT_PUBLIC_APP_URL` to your Vercel URL
-5. Deploy ✅
-6. Add Stripe webhook endpoint in Stripe Dashboard:
-   - URL: `https://your-app.vercel.app/api/stripe/webhook`
-   - Events: `checkout.session.completed`, `customer.subscription.deleted`, `customer.subscription.updated`
-
----
-
-## 🧪 Testing Payments
-
-Use Stripe's test card to simulate a subscription:
-
-```
-Card Number : 4242 4242 4242 4242
-Expiry      : Any future date (e.g. 12/29)
-CVC         : Any 3 digits (e.g. 123)
-```
-
----
-
-## 📁 Project Structure
-
-```
-golf-charity-platform/
-├── app/
-│   ├── api/          # API routes (Stripe, Supabase)
-│   ├── auth/         # Login & Signup pages
-│   ├── dashboard/    # User dashboard
-│   ├── admin/        # Admin panel
-│   └── subscribe/    # Subscription page
-├── lib/
-│   ├── supabase.ts   # Supabase client
-│   └── stripe.ts     # Stripe client + plans
-├── components/       # Reusable UI components
-└── supabase-schema.sql
-```
-
----
-
-## 📄 License
- -->
 # ⛳ GolfGives — Golf Charity Subscription Platform
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
@@ -173,12 +16,15 @@ golf-charity-platform/
 
 - [Overview](#-overview)
 - [Tech Stack](#-tech-stack)
+- [User Roles](#-user-roles)
 - [Features](#-features)
+- [Draw & Prize Logic](#-draw--prize-logic)
 - [Project Structure](#-project-structure)
 - [Local Setup](#-local-setup)
 - [Deployment](#-deployment)
 - [Testing Payments](#-testing-payments)
-- [Draw & Prize Logic](#-draw--prize-logic)
+- [Scalability](#-scalability)
+- [PRD Testing Checklist](#-prd-testing-checklist)
 
 ---
 
@@ -187,6 +33,8 @@ golf-charity-platform/
 GolfGives is a **subscription-based SaaS platform** built for golfers who want to compete, win prizes, and give back — all in one place.
 
 Users subscribe monthly or yearly, enter their latest golf scores in Stableford format, and are automatically entered into a monthly prize draw. A portion of every subscription goes directly to a charity of the user's choice.
+
+The platform is designed to feel **emotionally engaging and modern** — deliberately avoiding the aesthetics of a traditional golf website. Design leads with charitable impact, not sport.
 
 The platform features a fully custom **draw engine** (random or algorithmic), an **automated prize pool calculator**, and a **complete admin panel** for managing users, draws, charities, and winner payouts.
 
@@ -203,26 +51,60 @@ The platform features a fully custom **draw engine** (random or algorithmic), an
 
 ---
 
+## 👥 User Roles
+
+### 🌍 Public Visitor
+- View platform concept and how it works
+- Explore listed charities
+- Understand draw mechanics and prize structure
+- Initiate subscription / signup flow
+
+### 🏌️ Registered Subscriber
+- Manage profile & account settings
+- Enter and edit golf scores (Stableford format)
+- Select charity and set donation percentage
+- View participation summary and upcoming draws
+- Track winnings and payment status
+- Upload winner proof (screenshot of scores)
+
+### 🛠️ Administrator
+- Manage users & subscriptions
+- Configure and run monthly draws
+- Manage charity listings
+- Verify winners & process payouts
+- Access reports & analytics
+
+---
+
 ## ✨ Features
 
 ### 👤 User Features
 - ✅ Sign up / Login with email (Supabase Auth)
-- ✅ Choose a charity & set donation % at signup
+- ✅ Choose a charity & set donation % at signup (minimum 10%)
+- ✅ Voluntarily increase charity contribution percentage
+- ✅ Independent donation option (not tied to gameplay)
 - ✅ Subscribe Monthly or Yearly via Stripe Checkout
-- ✅ Enter Stableford scores (1–45), rolling last 5 logic
+- ✅ Enter and edit Stableford scores (1–45), rolling last 5 logic
+- ✅ Scores displayed in reverse chronological order (latest first)
 - ✅ View published prize draws & winning numbers
-- ✅ Track winnings history & payment status
+- ✅ Participation summary — draws entered & upcoming draws
+- ✅ Track winnings history & current payment status
+- ✅ Upload winner proof (screenshot) for verification
 - ✅ Cancel subscription anytime
 - ✅ Adjust charity donation % from settings
 
 ### 🛠️ Admin Features
 - ✅ Live dashboard — total users, active subscribers, prizes paid, active charities
-- ✅ User management — view profiles, manage subscriptions
+- ✅ User management — view/edit profiles, manage subscriptions
 - ✅ Draw engine — random + algorithmic simulation & publish
 - ✅ Prize pool auto-calculation (40% / 35% / 25% split)
 - ✅ Jackpot rollover logic if no 5-match winner
 - ✅ Charity management — add / edit / delete / feature charities
-- ✅ Winner verification — approve / reject submissions, mark payouts as paid
+- ✅ Charity profiles — description, images, upcoming events (e.g. golf days)
+- ✅ Featured / spotlight charity on homepage
+- ✅ Winner verification — approve / reject submissions
+- ✅ Mark winner payouts as completed (Pending → Paid)
+- ✅ Reports & analytics — draw stats, prize totals, charity contributions
 
 ---
 
@@ -236,9 +118,11 @@ Every month, the admin runs a draw that generates **5 winning numbers (1–45)**
 | 4-Number Match | 35% | ❌ No |
 | 3-Number Match | 25% | ❌ No |
 
+- Prize pool is **auto-calculated** based on active subscriber count
 - If multiple users match the same tier, the prize is **split equally**
 - If no 5-match winner, the **jackpot rolls over** to next month
 - Admin can **simulate** a draw before officially publishing it
+- Draw logic options: **Random** (lottery-style) or **Algorithmic** (weighted by score frequency)
 
 ---
 
@@ -334,6 +218,8 @@ Copy the webhook signing secret into `STRIPE_WEBHOOK_SECRET` in your `.env.local
 The app is live at:
 **[https://golf-charity-platform-vedant.vercel.app/](https://golf-charity-platform-vedant.vercel.app/)**
 
+> ⚠️ As per project requirements — deploy to a **new Vercel account** and use a **new Supabase project** (not personal/existing).
+
 To deploy your own instance:
 
 1. Push your code to GitHub
@@ -361,6 +247,35 @@ CVC          :  Any 3 digits (e.g. 123)
 ```
 
 > All test transactions are completely safe and do not charge real money.
+
+---
+
+## 📈 Scalability
+
+This platform has been architected with future growth in mind:
+
+- 🌐 **Multi-country expansion** — architecture supports regional scaling
+- 🏢 **Teams / Corporate accounts** — extensible data model for group subscriptions
+- 📣 **Campaign module** — ready for future activation
+- 📱 **Mobile app ready** — codebase structured to support a React Native / mobile version
+
+---
+
+## ✅ PRD Testing Checklist
+
+| Feature | Status |
+|---|---|
+| User signup & login | ✅ |
+| Subscription flow (monthly and yearly) | ✅ |
+| Score entry — 5-score rolling logic | ✅ |
+| Draw system logic and simulation | ✅ |
+| Charity selection and contribution calculation | ✅ |
+| Winner verification flow and payout tracking | ✅ |
+| User Dashboard — all modules functional | ✅ |
+| Admin Panel — full control and usability | ✅ |
+| Data accuracy across all modules | ✅ |
+| Responsive design on mobile and desktop | ✅ |
+| Error handling and edge cases | ✅ |
 
 ---
 
