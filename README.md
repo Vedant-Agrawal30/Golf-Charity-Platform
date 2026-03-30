@@ -115,8 +115,8 @@ Every month, the admin runs a draw that generates **5 winning numbers (1–45)**
 | Match Type | Prize Pool Share | Jackpot Rollover? |
 |---|---|---|
 | 5-Number Match | 40% | ✅ Yes |
-| 4-Number Match | 35% | ❌ No |
-| 3-Number Match | 25% | ❌ No |
+| 4-Number Match | 35% | ✅ Yes |
+| 3-Number Match | 25% | ✅ Yes |
 
 - Prize pool is **auto-calculated** based on active subscriber count
 - If multiple users match the same tier, the prize is **split equally**
