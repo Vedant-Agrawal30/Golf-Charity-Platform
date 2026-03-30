@@ -140,7 +140,7 @@ export default function DashboardPage() {
           {[
             { label: 'Subscription', value: subscription?.plan ? subscription.plan.charAt(0).toUpperCase() + subscription.plan.slice(1) : 'None', sub: isActive ? '● Active' : '○ Inactive', color: isActive ? 'text-brand-400' : 'text-red-400' },
             { label: 'Scores Entered', value: scores.length + '/5', sub: 'Rolling last 5', color: 'text-white' },
-            { label: 'Total Winnings', value: ` ₹${(totalWon / 100).toFixed(2)}`, sub: `${wins.length} prizes`, color: 'text-brand-400' },
+            { label: 'Total Winnings', value: ` ₹${(totalWon / 0.3).toFixed(2)}`, sub: `${wins.length} prizes`, color: 'text-brand-400' },
             { label: 'Charity', value: subscription?.charity_percentage + '%' || '10%', sub: subscription?.charity?.name?.split(' ')[0] || '–', color: 'text-white' },
           ].map((stat, i) => (
             <div key={i} className="stat-card">
